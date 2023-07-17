@@ -22,7 +22,7 @@ const signup = async (req, res) =>
 {
     try
     {
-        const { fullName, userName, phoneNumber, password } = req.body //we get all datas in req.body , de-structuring to extract the specific ones.
+        const { fullName, userName, password } = req.body //we get all datas in req.body , de-structuring to extract the specific ones.
         // create a random user id for each user
         const userId = crypto.randomBytes(16).toString("hex");
 
@@ -35,7 +35,7 @@ const signup = async (req, res) =>
         const token = serverClient.createUserToken(userId);
 
         // return data to front-end (we also get the username fullname phonenumber in the front-end but we are passing it from the backed to make it more secure.)
-        res.status(200).json({ token, fullName, userName, userId, hashedPassword, phoneNumber });
+        res.status(200).json({ token, fullName, userName, userId, hashedPassword });
 
     } catch (error)
     {

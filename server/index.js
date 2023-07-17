@@ -23,30 +23,30 @@ app.get('/', (req, res) => {
     res.send("Med Link Server scripts access Denied");
 })
 // we can test it only after deploying it
-app.post('/', (req, res) => {
-    const { message, user: sender, type, members } = req.body;
+// app.post('/', (req, res) => {
+//     const { message, user: sender, type, members } = req.body;
 
-    if (type === "message.new") {
-        members
-            .filter((member) => member.user_id !== sender.id) //exclude the sudouser
-            .forEach(({ user }) => {
-                if (!user.online) {
-                    twilioClient.messages.create({
-                        body: `You have a new message from ${message.user.fullName}-${message.text}`,
-                        messagingServiceSid: messagingServiceSid,
-                        to: user.phoneNumber
-                    }).then(() => {
-                        console.log("Message send");
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-                }
-            });
+//     if (type === "message.new") {
+//         members
+//             .filter((member) => member.user_id !== sender.id) //exclude the sudouser
+//             .forEach(({ user }) => {
+//                 if (!user.online) {
+//                     twilioClient.messages.create({
+//                         body: `You have a new message from ${message.user.fullName}-${message.text}`,
+//                         messagingServiceSid: messagingServiceSid,
+//                         to: user.phoneNumber
+//                     }).then(() => {
+//                         console.log("Message send");
+//                     }).catch((err) => {
+//                         console.log(err)
+//                     })
+//                 }
+//             });
 
-        res.status(200).send("Message send.");
-    }
-    return res.status(200).send("Not a new message request.");
-})
+//         res.status(200).send("Message send.");
+//     }
+//     return res.status(200).send("Not a new message request.");
+// })
 
 app.use('/auth', authRoutes)
 

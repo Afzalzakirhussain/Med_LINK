@@ -11,18 +11,17 @@ import './App.css';
 
 const cookies = new Cookies();
 
-const API_KEY = 'jwdbahpgmdbp';
+const API_KEY = 'vv9mmtcardg3';
 
 // authToken is available only if we logged in 
-const authToken = cookies.get('token', {
-    timeout: 6000,
-});
+const authToken = cookies.get('token');
 
 const client = StreamChat.getInstance(API_KEY);
 
 // if we have a token we need to connect the user
 // also if the user has't created yet it will create it
-if (authToken) {
+if (authToken)
+{
     client.connectUser(
         {
             id: cookies.get('userId'),
@@ -30,29 +29,32 @@ if (authToken) {
             fullName: cookies.get('fullName'),
             image: cookies.get('avatharURL'),
             hashedPassword: cookies.get('hashedPassword'),
-            phoneNumber: cookies.get('phoneNumber'),
         }, authToken
     )
 }
 
-const App = () => {
+const App = () =>
+{
 
     const [createType, setcreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setisEditing] = useState(false);
 
-    if (!authToken) {
+    if (!authToken)
+    {
         return <Auth />
     }
     // if fisrt time login 
-    if (!cookies.get('firsttimelogin')) {
+    if (!cookies.get('firsttimelogin'))
+    {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'logged in Successfully',
             showConfirmButton: false,
             timer: 1500
-        }).then(() => {
+        }).then(() =>
+        {
             cookies.set('firsttimelogin', true);
         })
     }
