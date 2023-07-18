@@ -1,27 +1,11 @@
 import React, { useState } from 'react';
 import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
-
 import { ChannelSearch, TeamChannellist, TeamChannelPreview } from './';
 import HospitalIcon from '../assets/hospital.png'
 import LogoutIcon from '../assets/logout.png'
-
+import Swal from 'sweetalert2';
 const cookies = new Cookies();
-
-const SideBar = ({ logout }) => (
-    <div className="channel-list__sidebar">
-        <div className="channel-list__sidebar__icon1">
-            <div className="icon1__inner">
-                <img src={HospitalIcon} alt="Hospital" width="30" />
-            </div>
-        </div>
-        <div className="channel-list__sidebar__icon2">
-            <div className="icon1__inner" onClick={logout}>
-                <img src={LogoutIcon} alt="Logout" width="30" />
-            </div>
-        </div>
-    </div>
-);
 
 const CompanyHeader = () => (
     <div className="channel-list__header">
@@ -40,6 +24,43 @@ const customChannelMessagingFilter = (channels) => {
 const ChannelListContent = ({ isCreating, setIsCreating, setcreateType, setisEditing, setToggleContainer }) => {
     const { client } = useChatContext();
 
+    const logoutSwal = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, logout'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setTimeout(() => {
+                    logout()
+                }, 3000);
+                Swal.fire(
+                    'Logout:',
+                    'You have successfully logged out.',
+                    'success'
+                ).then()
+            }
+        })
+    }
+
+    const SideBar = ({ logout }) => (
+        <div className="channel-list__sidebar">
+            <div className="channel-list__sidebar__icon1">
+                <div className="icon1__inner">
+                    <img src={HospitalIcon} alt="Hospital" width="30" />
+                </div>
+            </div>
+            <div className="channel-list__sidebar__icon2">
+                <div className="icon1__inner" onClick={logoutSwal}>
+                    <img src={LogoutIcon} alt="Logout" width="30" />
+                </div>
+            </div>
+        </div>
+    );
     const logout = () => {
         cookies.remove("token");
         cookies.remove('userId');
@@ -47,7 +68,6 @@ const ChannelListContent = ({ isCreating, setIsCreating, setcreateType, setisEdi
         cookies.remove('fullName');
         cookies.remove('avatarURL');
         cookies.remove('hashedPassword');
-        cookies.remove('phoneNumber');
         cookies.remove('firsttimelogin');
 
         window.location.reload();
@@ -142,7 +162,6 @@ const ChannelListContainer = ({ setcreateType, setIsCreating, setisEditing }) =>
             </div>
         </>
     )
-
 }
 
 export default ChannelListContainer;

@@ -126,12 +126,10 @@ const Auth = () => {
                 cookies.set('userId', userId);
                 cookies.set('fullName', fullName);
                 cookies.set('userName', userName);
-
                 if (!isSignIn) {
                     cookies.set('avatharURL', avatharURL);
                     cookies.set('hashedPassword', hashedPassword);
                 }
-
                 window.location.reload();
             }
         }
@@ -139,14 +137,12 @@ const Auth = () => {
         catch (error) {
             console.log(error)
             setdisableSubmitBtn(false)
-            Swal.fire(
-                {
-                    title: 'Oops Something went wrong!',
-                    text: 'Refused to connect server \n Check your connection',
-                    html: ' <b>Refused to connect server</b> <br> \n Check your connection',
-                    icon: 'error'
-                }
-            )
+            Swal.fire({
+                title: 'Oops Something went wrong!',
+                text: 'Refused to connect server \n Check your connection',
+                html: ' <b>Refused to connect server</b> <br> \n Check your connection',
+                icon: 'error'
+            })
         }
     }
 

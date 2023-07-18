@@ -407,6 +407,7 @@ body {
   flex-direction: column;
   background: var(--primary-color);
   width: 240px;
+  height: 100vh;
 }
 
 .icon1__inner {

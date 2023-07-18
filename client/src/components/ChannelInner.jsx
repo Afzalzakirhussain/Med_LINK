@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { MessageList, MessageInput, Thread, Window, useChannelActionContext, Avatar, useChannelStateContext, useChatContext } from 'stream-chat-react';
-
 import { ChannelInfo } from '../assets';
 
 export const GiphyContext = React.createContext({});
@@ -21,7 +20,6 @@ const ChannelInner = ({ setisEditing }) => {
         };
     }, [addNotification, channel]);
 
-
     const overrideSubmitHandler = (message) => {
         let updatedMessage = {
             attachments: message.attachments,
@@ -40,7 +38,6 @@ const ChannelInner = ({ setisEditing }) => {
             setGiphyState(false);
         }
     };
-
     return (
         <>
             <GiphyContext.Provider value={{ giphyState, setGiphyState }}>
@@ -56,7 +53,6 @@ const ChannelInner = ({ setisEditing }) => {
         </>
     );
 };
-
 const TeamChannelHeader = ({ setisEditing }) => {
     const { channel, watcher_count } = useChannelStateContext();
     const { client } = useChatContext();
@@ -89,13 +85,11 @@ const TeamChannelHeader = ({ setisEditing }) => {
             </div>
         );
     };
-
     const getWatcherText = (watchers) => {
         if (!watchers) return 'No users online';
         if (watchers === 1) return '1 user online';
         return `${watchers} users online`;
     };
-
     return (
         <div className='team-channel-header__container'>
             <MessagingHeader />

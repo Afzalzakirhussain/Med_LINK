@@ -58,13 +58,6 @@ const EditChannel = ({ setisEditing }) => {
                     }, 2500);
                 }
             }, 1000);
-            // // if (error.includes("is not allowed to perform action UpdateChannel in scope 'team'")) {
-            // // Perform your desired action or error handling here
-            // console.log("User is not allowed to perform action UpdateChannel in scope 'team'");
-            // // } else {
-            // // Handle other errors or perform alternative actions
-            // console.log("Oops something went wrong");
-            // // }
         }
 
         setChannelName(null);
