@@ -12,6 +12,8 @@ const initialState = {
   confirmPassword: "",
 };
 
+const API_URL = "http://localhost:5001";
+
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setformData] = useState(initialState);
@@ -81,8 +83,8 @@ const Auth = () => {
 
   const apicall = async (requestOptions, avatharURL) => {
     try {
-      const URL = process.env.REACT_APP_API_URL + "/auth";
-
+      const URL = API_URL + "/auth";
+      console.log(URL);
       setdisableSubmitBtn(true);
       // conects and fetch datas from db
       const response = await fetch(
