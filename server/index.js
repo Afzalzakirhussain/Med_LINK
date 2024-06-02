@@ -8,10 +8,6 @@ const PORT = process.env.PORT || 5000;
 
 // allow us to call the environmental variable inside the node application
 require('dotenv').config();
-const accountSid = "AC38842b61b22bb338bd9e61c912c699e1";
-const authToken = "7e390bd4f3fc948f1a7edda2dbbf27f4";
-const messagingServiceSid = "MG4613a41ac607065f8e7b600ebb6d07b0";
-const twilioClient = require('twilio')(accountSid, authToken);
 
 // Middlewares
 app.use(cors());
