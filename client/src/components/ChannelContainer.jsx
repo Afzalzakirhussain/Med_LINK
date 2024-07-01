@@ -38,12 +38,12 @@ const ChannelContainer = ({
   };
   return (
     <div className="channel__container">
-      {/* <Channel
+       <Channel
                 EmptyStateIndicator={EmptyState}
                 Message={(messageProps, i) => <MessageTeam key={i} {...messageProps} />}
             >
                 <ChannelInner setisEditing={setisEditing} />
-            </Channel> */}
+            </Channel> 
     </div>
   );
 };
